@@ -14,7 +14,7 @@ module Searchable
       elsif params.is_a?(String)
         params
       else
-        throw "parameters must be either hash or string"
+        raise ArgumentError, "parameters must be either hash or string"
       end
 
     data = DBConnection.instance.execute(<<-SQL)

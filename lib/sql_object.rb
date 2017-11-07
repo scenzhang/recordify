@@ -4,14 +4,14 @@ require 'byebug'
 require_relative 'validation'
 require_relative 'searchable'
 require_relative 'associatable'
-# NB: the attr_accessor we wrote in phase 0 is NOT used in the rest
-# of this project. It was only a warm up.
+require_relative 'exceptions'
 
 class SQLObject
   extend Validatable
   extend Searchable
   extend Associatable
 
+  
   def self.columns
     @cols ||= DBConnection.execute2(<<-SQL)
       select * from #{table_name}
@@ -100,14 +100,14 @@ class SQLObject
   def save
     if self.class.validations
       self.class.validations.each do |validation|
-        self.send("validate_#{validation.to_s}")
+        self.send("validate_#{validation}")
       end
       unless errors.empty?
         errors.each do |col, msgs|
           msgs.each { |msg| puts "#{col} #{msg}" }
         end
         reset_errors
-        raise "validations failed"
+        raise ValidationError.new, "validations failed"
       end
     end
     

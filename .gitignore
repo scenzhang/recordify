@@ -1,0 +1,4 @@
+spec/
+*.db
+*.sql
+Gemfile.lock

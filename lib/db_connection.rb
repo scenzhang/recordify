@@ -1,12 +1,12 @@
 require 'sqlite3'
 
 PRINT_QUERIES = ENV['PRINT_QUERIES'] == 'true'
-# https://tomafro.net/2010/01/tip-relative-paths-with-file-expand-path
 ROOT_FOLDER = File.join(File.dirname(__FILE__), '..')
 CATS_SQL_FILE = File.join(ROOT_FOLDER, 'cats.sql')
 CATS_DB_FILE = File.join(ROOT_FOLDER, 'cats.db')
 
 class DBConnection
+  
   def self.open(db_file_name)
     @db = SQLite3::Database.new(db_file_name)
     @db.results_as_hash = true
