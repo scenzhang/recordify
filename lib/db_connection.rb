@@ -4,10 +4,9 @@ require 'json'
 PRINT_QUERIES = ENV['PRINT_QUERIES'] == 'true'
 ROOT_FOLDER = File.join(File.dirname(__FILE__), '..')
 
-config = JSON.parse(File.read('./config.json'))
+config = JSON.parse(File.read(File.join(ROOT_FOLDER, 'config.json')))
 SQL_FILE = File.join(ROOT_FOLDER, config['sql_file'])
 DB_FILE = File.join(ROOT_FOLDER, config['db_file'])
-
 class DBConnection
   
   def self.open(db_file_name)

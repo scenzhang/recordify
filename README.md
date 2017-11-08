@@ -1,6 +1,10 @@
 # Recordify: Object-Relational Mapping
 Recordify is a light ORM inspired by ActiveRecord. It provides a base class `SQLObject` that, when extended, sets up a mapping between the model class and an existing table in a SQLite3 database. 
 Recordify uses names to automate mapping tables to classes and table columns to class attributes. Table names can be overwrittenwith custom names using `table_name=`.
+
+Edit config.json to specify the SQL file to populate the database, and the db file to save the database to.
+
+
 * Automated mapping between classes and tables, attributes and columns
 ```
 class Cat < SQLObject
@@ -55,7 +59,8 @@ Through associations combine two `belongs_to` associations.
   end
   class Cat < SQLObject
     belongs_to :human, foreign_key: :owner_id
-    belongs_to :house, through: :human
+    #usage: has_one_through :name_of_association, :through_class, :source_association
+    has_one_through :house, :human, :house 
   end
 ```
 
