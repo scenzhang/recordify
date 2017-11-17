@@ -1,5 +1,4 @@
 require_relative "lib/sql_object"
-require "byebug"
 
 class Composer < SQLObject 
   belongs_to :period

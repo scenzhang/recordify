@@ -1,6 +1,6 @@
 # require_relative '04_associatable'
-require 'byebug'
-require_relative 'sql_object'
+# require 'byebug'
+# require_relative 'sql_object'
 
 module Validatable
   attr_reader :validations
